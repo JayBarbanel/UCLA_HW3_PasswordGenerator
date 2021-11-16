@@ -25,7 +25,7 @@ var confirmLowercase;
 
 // Special Characters to choose from :
 
-character = ["!", "#", "$", "&", "*", "$", "@", "+", "-", "=", "<", ">", "\\"];
+character = ["!", "$", "^", "+", "*", "$", "%", "%", "-", "=", "<", ">", "\\"];
 
 // Alphabet to choose from :
 
@@ -58,15 +58,80 @@ function generatePassword() {
     enter = parseInt(prompt("Please choose your character count.  Must be between 8-128"));
 
 
-    // this is the aler if a number count is not inputed 
+    // this is the alert if a number count is not inputed :
     if (!enter) {
         alert("This needs a value");
     } else if (enter < 8 || enter > 128) {
         enter = parseInt(prompt("Before continuing, you must chose a number"));
 
     } else {
-        confirmNumber = confirm("Do you want the password to contain numbers?")
-        confirmCharacter = confirm("Do you want the password to contain special characters?")
-        confirmUppercase = confirm("Do you want the password to contain upper case letters?")
-        confirmLowercase = confirm("Do you want the password to contain lower case letters?")
+        confirmNumber = confirm("Do you want the password to contain numbers?");
+        confirmLowercase = confirm("Do you want the password to contain lower case letters?");
+        confirmUppercase = confirm("Do you want the password to contain upper case letters?");
+        confirmCharacter = confirm("Do you want the password to contain special characters?");
+    };
+    if (!confirmCharacter && !confirmNumber && !confirmUppercase && !confirmLowercase) {
+        choices = alert("Please chose password guidlines");
+    } else if (confirmCharacter && confirmNumber && confirmUppercase && confirmLowercase) {
+
+        choices = character.concat(number, alpha, alpha2);
+    } else if (confirmCharacter && confirmNumber && confirmUppercase) {
+        choices = character.concat(number, alpha2);
+    } else if (confirmCharacter && confirmNumber && confirmLowercase) {
+        choices = character.concat(number, alpha);
+    } else if (confirmCharacter && confirmLowercase && confirmUppercase) {
+        choices = character.concat(alpha, alpha2);
+    } else if (confirmNumber && confirmLowercase && confirmUppercase) {
+        choices = number.concat(alpha, alpha2);
+    } else if (confirmCharacter && confirmNumber) {
+        choices = character.concat(number);
+
+    } else if (confirmCharacter && confirmLowercase) {
+        choices = character.concat(alpha);
+
+    } else if (confirmCharacter && confirmUppercase) {
+        choices = character.concat(alpha2);
+    } else if (confirmLowercase && confirmNumber) {
+        choices = alpha.concat(number);
+
+    } else if (confirmLowercase && confirmUppercase) {
+        choices = alpha.concat(alpha2);
+
+    } else if (confirmNumber && confirmUppercase) {
+        choices = number.concat(alpha2);
+    } else if (confirmCharacter) {
+        choices = character;
+    } else if (confirmNumber) {
+        choices = number;
+    } else if (confirmLowercase) {
+        choices = alpha;
+    } else if (confirmUppercase) {
+        choices = space.concat(alpha2);
+    };
+
+    var password = [];
+
+    for (var i = 0; i < enter; i++) {
+        var pickChoices = choices[Math.floor(Math.random() * choices.length)];
+        password.push(pickChoices);
     }
+    var ps = password.join("");
+    UserInput(ps);
+    return ps;
+}
+
+function UserInput(ps) {
+    document.getElementById("password").textContent = ps;
+
+}
+
+var copy = document.querySelector("#copy");
+copy.addEventListener("click", function() {
+    copyPassword();
+});
+
+// function copyPassword() {
+//     document.getElementById("password").select();
+//     document.execCommand("Copy");
+//     alert("Password copied to clipboard!");
+// }
