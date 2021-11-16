@@ -44,7 +44,7 @@ function getPrompts() {
     userChoice = [];
     charLength = parseInt(prompt("You must select how many numbers you'd like to input.  Please chose between 8-128"));
 
-    if (isNaN(charLength)(charLength < 8, charLength > 128)) {
+    if (isNaN(charLength) || charLength < 8 || charLength > 128) {
         alert("Before continuing, please input a number between 8 - 128.");
         return false;
     }
