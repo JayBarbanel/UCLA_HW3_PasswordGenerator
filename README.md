@@ -10,4 +10,9 @@ I needed to create an addEventListener, which would allowe the click of the gene
 
 # Links 
 
+https://jaybarbanel.github.io/UCLA_HW3_PasswordGenerator/
 
+https://github.com/JayBarbanel/UCLA_HW3_PasswordGenerator
+
+
+![Screen Shot 2021-11-15 at 8 08 49 PM](https://user-images.githubusercontent.com/89555843/141907787-1c77efc3-659a-418d-8050-9b28e54fea8b.png)
